@@ -34,4 +34,4 @@ This project does **not** implement a real network layer, but rather a framework
 * **Security**: Ensure the validity of a session and  messages's integrity and confidentiality.
 
 ## test cases:
-  * to see predefined test cases, simply run "tests.go"
+  * to see predefined test cases, simply run "go run ./tests.go"
