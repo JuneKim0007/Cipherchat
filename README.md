@@ -15,7 +15,7 @@ This project does **not** implement a real network layer, but rather a framework
 ## How it works
 1. **Session Initialization**
      * Each participant generates key pairs(Pub_Key, Priv_Key) that is ephemeral to a session using an elliptic curve (P-256).
-     * These keys are temporary and used only for the current session to derive shared secrets via Diffie-Hellman.
+     * These keys are temporary and used only for the current session to derive shared secrets via Diffie-Hellman key exchange.
      * Public keys are exchanged via a handshake.
 3. **Key Derivation**
      * Both sides derive a shared secret using Diffie–Hellman.
@@ -26,12 +26,13 @@ This project does **not** implement a real network layer, but rather a framework
    * If the flow of messages changes, a new ephemeral key pair is generated and used with the existing root key to create a new chain.
 6. **Asynchronous Chat**
    * Session caches track key state for proper decryption and ratcheting.
+   * Cached Key is used to decrypt any out-of-order past messages then get zerorized immediately.
 
 ## Features
 * **Triple Diffie–Hellman Handshake**: Establishes a secure session and generates ephemeral key pairs.  
 * **Message Ratcheting**: Ratchet keys per message for forward secrecy.  
 * **Asynchronous Support**: Out-of-order messages can be decrypted correctly.  
-* **Security**: Ensure the validity of a session and  messages's integrity and confidentiality.
+* **Security**: Ensure the integrity and confidentiality of message exchanges while zerorizing keys immediately after their use.
 
 ## test cases:
   * to see predefined test cases, simply run "go run ./tests.go"
